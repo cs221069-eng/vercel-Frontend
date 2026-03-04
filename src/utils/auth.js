@@ -1,6 +1,7 @@
 import axios from "axios";
 
-export const API_BASE_URL = "https://vercel-backend-w7h5.vercel.app";
+export const API_BASE_URL =
+  import.meta.env.VITE_API_BASE_URL || "https://vercel-backend-w7h5.vercel.app";
 
 export function storeAuthSession(payload = {}) {
   const { token, accountId, role, email, name } = payload;
