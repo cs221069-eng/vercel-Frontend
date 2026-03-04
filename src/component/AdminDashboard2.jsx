@@ -1,6 +1,7 @@
 import AdminSidebar from "./AdminSidebar";
 import { useEffect, useState } from "react";
-import apiClient from "../utils/apiClient";
+import axios from "axios";
+import { API_BASE_URL, getAuthConfig } from "../utils/auth";
 
 function AdminDashboard2() {
   const USERS_PER_PAGE = 20;
@@ -29,12 +30,12 @@ function AdminDashboard2() {
     setErrorMessage("");
 
     try {
-      const response = await apiClient.get("/api/user/all/9165", {
+      const response = await axios.get(`${API_BASE_URL}/api/user/all/9165`, getAuthConfig({
         params: {
           page,
           limit: USERS_PER_PAGE,
         },
-      });
+      }));
 
       const fetchedUsers = response?.data?.data || [];
       const pagination = response?.data?.pagination || {};
@@ -98,15 +99,16 @@ function AdminDashboard2() {
     setIsUpdating(true);
 
     try {
-      const response = await apiClient.put(
-        `/api/user/edit/${editingUser._id}/9165`,
+      const response = await axios.put(
+        `${API_BASE_URL}/api/user/edit/${editingUser._id}/9165`,
         {
           name: editForm.name,
           email: editForm.email,
           role: editForm.role,
           department: editForm.department,
           status: editForm.status,
-        }
+        },
+        getAuthConfig()
       );
 
       const updatedUser = response?.data?.user;
@@ -133,8 +135,9 @@ function AdminDashboard2() {
     setIsDeleting(true);
 
     try {
-      await apiClient.delete(
-        `/api/user/delete/${deletingUser._id}/9165`
+      await axios.delete(
+        `${API_BASE_URL}/api/user/delete/${deletingUser._id}/9165`,
+        getAuthConfig()
       );
       const expectedPage =
         users.length === 1 && currentPage > 1 ? currentPage - 1 : currentPage;

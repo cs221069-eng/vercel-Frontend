@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import AdminSidebar from "./AdminSidebar";
-import apiClient from "../utils/apiClient";
+import axios from "axios";
+import { API_BASE_URL, getAuthConfig } from "../utils/auth";
 
 function AdminDashboard1() {
   const [metrics, setMetrics] = useState({
@@ -19,7 +20,10 @@ function AdminDashboard1() {
     setErrorMessage("");
 
     try {
-      const response = await apiClient.get("/api/auth/admin/dashboard/9165");
+      const response = await axios.get(
+        `${API_BASE_URL}/api/auth/admin/dashboard/9165`,
+        getAuthConfig()
+      );
       const data = response?.data?.data || {};
 
       setMetrics({
@@ -49,7 +53,11 @@ function AdminDashboard1() {
     setErrorMessage("");
 
     try {
-      await apiClient.patch(`/api/user/project/${projectId}/committee/9165`, { action });
+      await axios.patch(
+        `${API_BASE_URL}/api/user/project/${projectId}/committee/9165`,
+        { action },
+        getAuthConfig()
+      );
       await fetchDashboardData();
     } catch (error) {
       setErrorMessage(error?.response?.data?.message || "Failed to submit committee decision.");

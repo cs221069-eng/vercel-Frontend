@@ -1,4 +1,6 @@
-import apiClient from "./apiClient";
+import axios from "axios";
+
+export const API_BASE_URL = "https://vercel-backend-w7h5.vercel.app";
 
 export function storeAuthSession(payload = {}) {
   const { token, accountId, role, email, name } = payload;
@@ -11,8 +13,14 @@ export function storeAuthSession(payload = {}) {
 }
 
 export async function logoutUser() {
+  const token = localStorage.getItem("authToken");
+  const config = {
+    withCredentials: true,
+    headers: token ? { Authorization: `Bearer ${token}` } : {},
+  };
+
   try {
-    await apiClient.post("/api/auth/logout/9165");
+    await axios.post(`${API_BASE_URL}/api/auth/logout/9165`, {}, config);
   } catch {
     // Clear local session even if network request fails.
   } finally {
@@ -22,6 +30,23 @@ export async function logoutUser() {
     localStorage.removeItem("email");
     localStorage.removeItem("name");
   }
+}
+
+export function getAuthConfig(extraConfig = {}) {
+  const token = localStorage.getItem("authToken");
+  const baseConfig = {
+    withCredentials: true,
+    headers: token ? { Authorization: `Bearer ${token}` } : {},
+  };
+
+  return {
+    ...baseConfig,
+    ...extraConfig,
+    headers: {
+      ...baseConfig.headers,
+      ...(extraConfig.headers || {}),
+    },
+  };
 }
 
 function decodeJwtPayload(token) {

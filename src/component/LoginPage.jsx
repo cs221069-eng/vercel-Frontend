@@ -1,7 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
-import apiClient from "../utils/apiClient";
-import { storeAuthSession } from "../utils/auth";
+import axios from "axios";
+import { API_BASE_URL, storeAuthSession } from "../utils/auth";
 
 function LoginPage() {
   const navigate = useNavigate();
@@ -17,7 +17,11 @@ function LoginPage() {
     setIsSubmitting(true);
 
     try {
-      const response = await apiClient.post("/api/auth/login/9165", { email, password });
+      const response = await axios.post(
+        `${API_BASE_URL}/api/auth/login/9165`,
+        { email, password },
+        { withCredentials: true }
+      );
       const redirectPath = response?.data?.redirect;
       const role = response?.data?.role;
 

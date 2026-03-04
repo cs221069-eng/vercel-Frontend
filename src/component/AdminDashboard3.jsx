@@ -1,7 +1,8 @@
 import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import AdminSidebar from "./AdminSidebar";
-import apiClient from "../utils/apiClient";
+import axios from "axios";
+import { API_BASE_URL, getAuthConfig } from "../utils/auth";
 
 function AdminDashboard3() {
   const [admins, setAdmins] = useState([]);
@@ -23,7 +24,10 @@ function AdminDashboard3() {
     setAdminsError("");
 
     try {
-      const response = await apiClient.get("/api/auth/admins/9165");
+      const response = await axios.get(
+        `${API_BASE_URL}/api/auth/admins/9165`,
+        getAuthConfig()
+      );
       setAdmins(response?.data?.data || []);
     } catch (error) {
       setAdminsError(error?.response?.data?.message || "Failed to fetch admins.");
@@ -48,7 +52,11 @@ function AdminDashboard3() {
     setIsSubmitting(true);
 
     try {
-      await apiClient.post("/api/user/create/9165", formState);
+      await axios.post(
+        `${API_BASE_URL}/api/user/create/9165`,
+        formState,
+        getAuthConfig()
+      );
       setSuccessMessage("User created successfully.");
       setFormState({
         name: "",
