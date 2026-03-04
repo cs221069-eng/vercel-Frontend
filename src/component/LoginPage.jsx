@@ -18,7 +18,7 @@ function LoginPage() {
 
     try {
       const response = await axios.post(
-        `${API_BASE_URL}/api/auth/login/9165`,
+        `https://vercel-backend-w7h5.vercel.app/api/auth/login/9165`,
         { email, password },
         { withCredentials: true }
       );
