@@ -25,7 +25,7 @@ function AdminDashboard3() {
 
     try {
       const response = await axios.get(
-        `${API_BASE_URL}/api/auth/admins/9165`,
+        `${API_BASE_URL}/api/admin/admins/9165`,
         getAuthConfig()
       );
       setAdmins(response?.data?.data || []);

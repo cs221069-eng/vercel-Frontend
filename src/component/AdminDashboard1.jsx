@@ -21,7 +21,7 @@ function AdminDashboard1() {
 
     try {
       const response = await axios.get(
-        `${API_BASE_URL}/api/auth/admin/dashboard/9165`,
+        `${API_BASE_URL}/api/admin/admin/dashboard/9165`,
         getAuthConfig()
       );
       const data = response?.data?.data || {};
