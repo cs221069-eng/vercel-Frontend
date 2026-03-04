@@ -1,7 +1,10 @@
 import axios from "axios";
 
+const API_BASE_URL =
+  import.meta.env.VITE_API_BASE_URL || "https://vercel-backend-w7h5.vercel.app";
+
 const apiClient = axios.create({
-  baseURL: "https://vercel-backend-w7h5.vercel.app",
+  baseURL: API_BASE_URL,
   withCredentials: true,
 });
 
