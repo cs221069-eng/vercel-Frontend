@@ -20,7 +20,7 @@ function TeacherDashboard2() {
     setErrorMessage("");
     try {
       const response = await axios.get(
-        `http://localhost:3000/api/user/teacher/dashboard/${teacherId}/9165`
+        `https://vercel-backend-w7h5.vercel.app/api/user/teacher/dashboard/${teacherId}/9165`
       );
       setStudents(response?.data?.data?.students || []);
     } catch (error) {
@@ -147,3 +147,4 @@ function TeacherDashboard2() {
 }
 
 export default TeacherDashboard2;
+

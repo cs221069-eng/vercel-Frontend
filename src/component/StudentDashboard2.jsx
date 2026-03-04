@@ -57,7 +57,7 @@ function StudentDashboard2() {
     setIsProposalLoading(true);
     try {
       const response = await axios.get(
-        `http://localhost:3000/api/user/project/student/${studentId}/latest/9165`
+        `https://vercel-backend-w7h5.vercel.app/api/user/project/student/${studentId}/latest/9165`
       );
       setLatestProposal(response?.data?.data || null);
       setActiveRequestMeta({
@@ -82,7 +82,7 @@ function StudentDashboard2() {
     if (!studentId) return;
 
     try {
-      const response = await axios.get(`http://localhost:3000/api/user/student/dashboard/${studentId}/9165`);
+      const response = await axios.get(`https://vercel-backend-w7h5.vercel.app/api/user/student/dashboard/${studentId}/9165`);
       const fetchedName = response?.data?.data?.student?.name || "";
       if (fetchedName) {
         setStudentName(fetchedName);
@@ -96,7 +96,7 @@ function StudentDashboard2() {
   useEffect(() => {
     const fetchTeachers = async () => {
       try {
-        const response = await axios.get("http://localhost:3000/api/user/teacher/all/9165");
+        const response = await axios.get("https://vercel-backend-w7h5.vercel.app/api/user/teacher/all/9165");
         setTeachers(response?.data?.data || []);
       } catch (error) {
         console.error("Error fetching teachers:", error);
@@ -165,7 +165,7 @@ function StudentDashboard2() {
       });
 
       await axios.post(
-        `http://localhost:3000/api/user/project/${studentId}/9165`,
+        `https://vercel-backend-w7h5.vercel.app/api/user/project/${studentId}/9165`,
         payload
         
       );
@@ -565,3 +565,4 @@ type="button"
 }
 
 export default StudentDashboard2;
+

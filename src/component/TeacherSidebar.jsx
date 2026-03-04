@@ -25,7 +25,7 @@ function TeacherSidebar({ active = "dashboard" }) {
     const syncProposalCount = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:3000/api/user/project/teacher/${teacherId}/9165`
+          `https://vercel-backend-w7h5.vercel.app/api/user/project/teacher/${teacherId}/9165`
         );
         const total = (response?.data?.data || []).filter(
           (proposal) => (proposal?.proposalStatus || "pending") === "pending"
@@ -117,3 +117,4 @@ function TeacherSidebar({ active = "dashboard" }) {
 }
 
 export default TeacherSidebar;
+

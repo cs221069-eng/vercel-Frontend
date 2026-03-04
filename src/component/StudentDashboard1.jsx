@@ -54,7 +54,7 @@ function StudentDashboard1() {
 
     try {
       const response = await axios.get(
-        `http://localhost:3000/api/user/student/dashboard/${studentId}/9165`
+        `https://vercel-backend-w7h5.vercel.app/api/user/student/dashboard/${studentId}/9165`
       );
       setDashboard(response?.data?.data || null);
     } catch (error) {
@@ -98,7 +98,7 @@ function StudentDashboard1() {
     setIsAddingTask(true);
     try {
       await axios.post(
-        `http://localhost:3000/api/user/student/dashboard/task/${studentId}/9165`,
+        `https://vercel-backend-w7h5.vercel.app/api/user/student/dashboard/task/${studentId}/9165`,
         taskForm
       );
       setTaskForm({ title: "", description: "", priority: "medium", dueDate: "" });
@@ -114,7 +114,7 @@ function StudentDashboard1() {
     if (!studentId || !taskId) return;
     try {
       await axios.patch(
-        `http://localhost:3000/api/user/student/dashboard/task/${studentId}/${taskId}/9165`,
+        `https://vercel-backend-w7h5.vercel.app/api/user/student/dashboard/task/${studentId}/${taskId}/9165`,
         { status }
       );
       await fetchDashboard();
@@ -135,7 +135,7 @@ function StudentDashboard1() {
       submissionFiles.forEach((file) => formData.append("documents", file));
 
       await axios.post(
-        `http://localhost:3000/api/user/student/dashboard/work/${studentId}/9165`,
+        `https://vercel-backend-w7h5.vercel.app/api/user/student/dashboard/work/${studentId}/9165`,
         formData
       );
 
@@ -156,7 +156,7 @@ function StudentDashboard1() {
     setIsAddingResource(true);
     try {
       await axios.post(
-        `http://localhost:3000/api/user/student/dashboard/resource/${studentId}/9165`,
+        `https://vercel-backend-w7h5.vercel.app/api/user/student/dashboard/resource/${studentId}/9165`,
         resourceForm
       );
       setResourceForm({ title: "", category: "general", url: "" });
@@ -175,7 +175,7 @@ function StudentDashboard1() {
     setIsSendingMessage(true);
     try {
       await axios.post(
-        `http://localhost:3000/api/user/student/dashboard/message/${studentId}/9165`,
+        `https://vercel-backend-w7h5.vercel.app/api/user/student/dashboard/message/${studentId}/9165`,
         { message: supervisorMessage }
       );
       setSupervisorMessage("");
@@ -566,3 +566,4 @@ function StudentDashboard1() {
 }
 
 export default StudentDashboard1;
+

@@ -49,8 +49,8 @@ function TeacherProjects() {
         }
 
         const [projectResponse, dashboardResponse] = await Promise.all([
-          axios.get(`http://localhost:3000/api/user/project/teacher/${teacherId}/9165`),
-          axios.get(`http://localhost:3000/api/user/teacher/dashboard/${teacherId}/9165`),
+          axios.get(`https://vercel-backend-w7h5.vercel.app/api/user/project/teacher/${teacherId}/9165`),
+          axios.get(`https://vercel-backend-w7h5.vercel.app/api/user/teacher/dashboard/${teacherId}/9165`),
         ]);
 
         const teacherStudents = dashboardResponse?.data?.data?.students || [];
@@ -82,7 +82,7 @@ function TeacherProjects() {
 
     try {
       const response = await axios.patch(
-        `http://localhost:3000/api/user/project/${projectId}/review/${teacherId}/9165`,
+        `https://vercel-backend-w7h5.vercel.app/api/user/project/${projectId}/review/${teacherId}/9165`,
         { action }
       );
 
@@ -188,7 +188,7 @@ function TeacherProjects() {
 
       try {
         const response = await axios.get(
-          `http://localhost:3000/api/user/teacher/workspace/${teacherId}/student/${studentId}/9165`
+          `https://vercel-backend-w7h5.vercel.app/api/user/teacher/workspace/${teacherId}/student/${studentId}/9165`
         );
         setWorkspaceData(response?.data?.data || null);
       } catch (error) {
@@ -256,13 +256,13 @@ function TeacherProjects() {
     setIsSendingReply(true);
     try {
       await axios.post(
-        `http://localhost:3000/api/user/teacher/message/${teacherId}/student/${studentId}/9165`,
+        `https://vercel-backend-w7h5.vercel.app/api/user/teacher/message/${teacherId}/student/${studentId}/9165`,
         { message: teacherReply }
       );
       setTeacherReply("");
 
       const response = await axios.get(
-        `http://localhost:3000/api/user/teacher/workspace/${teacherId}/student/${studentId}/9165`
+        `https://vercel-backend-w7h5.vercel.app/api/user/teacher/workspace/${teacherId}/student/${studentId}/9165`
       );
       setWorkspaceData(response?.data?.data || null);
     } catch (error) {
@@ -717,3 +717,4 @@ function TeacherProjects() {
 }
 
 export default TeacherProjects;
+

@@ -22,7 +22,7 @@ function TeacherReports() {
     setErrorMessage("");
     try {
       const response = await axios.get(
-        `http://localhost:3000/api/user/teacher/reports/${teacherId}/9165`
+        `https://vercel-backend-w7h5.vercel.app/api/user/teacher/reports/${teacherId}/9165`
       );
       setReportData(response?.data?.data || null);
     } catch (error) {
@@ -278,3 +278,4 @@ function TeacherReports() {
 }
 
 export default TeacherReports;
+

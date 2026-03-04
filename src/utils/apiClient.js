@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const apiClient = axios.create({
-  baseURL: "http://localhost:3000",
+  baseURL: "https://vercel-backend-w7h5.vercel.app",
   withCredentials: true,
 });
 
@@ -14,3 +14,4 @@ apiClient.interceptors.request.use((config) => {
 });
 
 export default apiClient;
+
